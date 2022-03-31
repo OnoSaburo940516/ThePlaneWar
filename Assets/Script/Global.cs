@@ -63,7 +63,7 @@ public static class Global
         {
             Vector3 targetPosition = (missileTargets[i]).position;
             Vector3 dir = targetPosition - thisPosition;
-            float dot = Vector3.Dot(Vector3.forward, dir);
+            float dot = Vector3.Dot(current.forward, dir);
             if (dot > 0)
                 distances[i] = Vector3.Distance(thisPosition, targetPosition);
             else
@@ -93,7 +93,7 @@ public static class Global
             Vector3 thisPosition = current.position;
             Vector3 targetPosition = target.position;
             Vector3 dir = targetPosition - thisPosition;
-            float dot = Vector3.Dot(Vector3.forward, dir);
+            float dot = Vector3.Dot(current.forward, dir);
             if (dot > 0)
                 distance = Vector3.Distance(thisPosition, targetPosition);
         }

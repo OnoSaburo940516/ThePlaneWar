@@ -84,7 +84,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
                 float targetAnglePitch = -Mathf.Atan2(localTarget.y, localTarget.z);
 
                 // 如果有地形阻挡，则向上飞
-                Ray ray = new Ray(transform.position, Vector3.forward);
+                Ray ray = new Ray(transform.position, transform.forward);
                 RaycastHit[] hits = Physics.RaycastAll(ray, 600);
                 foreach (var hit in hits)
                 {
