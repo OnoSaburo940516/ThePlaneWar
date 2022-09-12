@@ -50,3 +50,6 @@ Unity3D制作的飞机大战小游戏
 <img src="https://github.com/664235822/ThePlaneWar/raw/master/img/psc (5).jpeg" />
 <img src="https://github.com/664235822/ThePlaneWar/raw/master/img/psc (6).jpeg" />
 <img src="https://github.com/664235822/ThePlaneWar/raw/master/img/psc (7).jpeg" />
+
+## 作者
+SmallPig1997 664235822
