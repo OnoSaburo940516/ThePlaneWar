@@ -12,6 +12,9 @@ Unity3D制作的飞机大战小游戏
 * 有计分板，点击计分板可观察其他飞机的第一视角
 * 一场对战10分钟，希望大家喜欢！
 
+## 项目视频
+* (https://www.bilibili.com/video/BV1Kb4y197g5/)
+
 ## 使用插件
 * NGUI Next-Gen UI 2019.3.0
 * PUN 2 - FREE
