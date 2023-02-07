@@ -53,7 +53,7 @@ public class PhotonGame : MonoBehaviourPunCallbacks, IPlaneHandler
     private void Update()
     {
         hpLerpImage.fillAmount = Mathf.Lerp(
-            (float) ((int) PhotonNetwork.LocalPlayer.GetProperties("HP", 100) / 100.0),
+            (float)((int)PhotonNetwork.LocalPlayer.GetProperties("HP", 100) / 100.0),
             hpLerpImage.fillAmount, 0.95f);
 
         if (_time > 0)
@@ -79,7 +79,7 @@ public class PhotonGame : MonoBehaviourPunCallbacks, IPlaneHandler
         PhotonNetwork.LocalPlayer.SetProperties("isLoadScene", true);
 
         yield return new WaitUntil(() =>
-            PhotonNetwork.PlayerList.All(player => (bool) player.GetProperties("isLoadScene", false)));
+            PhotonNetwork.PlayerList.All(player => (bool)player.GetProperties("isLoadScene", false)));
 
         loadingText.enabled = false;
         mainCamera.enabled = false;
@@ -116,6 +116,19 @@ public class PhotonGame : MonoBehaviourPunCallbacks, IPlaneHandler
         SceneManager.LoadScene("StartScene");
     }
 
+    public void OnRebornButtonClick()
+    {
+        photonView.RPC("Dead", PhotonNetwork.LocalPlayer);
+    }
+
+    public void OnGameOverButtonClick()
+    {
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            photonView.RPC("GameOver", RpcTarget.All);
+        }
+    }
+
     [PunRPC]
     public void GameOver()
     {
@@ -143,7 +156,7 @@ public class PhotonGame : MonoBehaviourPunCallbacks, IPlaneHandler
 
         _invincible = false;
 
-        int death = (int) PhotonNetwork.LocalPlayer.GetProperties("death", 0);
+        int death = (int)PhotonNetwork.LocalPlayer.GetProperties("death", 0);
         death++;
         PhotonNetwork.LocalPlayer.SetProperties("death", death);
 
@@ -178,7 +191,7 @@ public class PhotonGame : MonoBehaviourPunCallbacks, IPlaneHandler
 
         LocalPlane = PhotonNetwork.Instantiate(planePrefabs[Global.totalPlaneInt].name,
             groundRunwayPosition[Global.totalPlayerInt].position + new Vector3(0, 15, 0), Quaternion.identity);
-        
+
         PhotonNetwork.LocalPlayer.SetProperties("HP", 100);
 
         Reborn = false;
@@ -231,6 +244,6 @@ public class PhotonGame : MonoBehaviourPunCallbacks, IPlaneHandler
         base.OnPlayerPropertiesUpdate(target, changedProps);
 
         if (Equals(target, PhotonNetwork.LocalPlayer))
-            hpImage.fillAmount = (float) ((int) target.GetProperties("HP", 100) / 100.0);
+            hpImage.fillAmount = (float)((int)target.GetProperties("HP", 100) / 100.0);
     }
 }
